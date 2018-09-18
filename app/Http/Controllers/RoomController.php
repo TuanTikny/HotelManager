@@ -84,7 +84,7 @@ class RoomController extends Controller
                         ->where('status', 'LIKE', '%Đang%');
                     })->paginate($limit);
 
-                    return response()->json($data, 200);
+                    return response()->json(['message'=>$data, 'status'=>true],201);
                 }
 
             }else {
@@ -111,12 +111,12 @@ class RoomController extends Controller
 
                 //return message by json if validation false
                 if($validator->fails()){
-                    $response = array('message' => $validator->messages());
+                    $response = ['message' => $validator->messages(),"status"=>false];
                     return $response;
                 }else{
                     //get value user and save into database
                     $room = Room::create($request->all());
-                    return response()->json($room, 201);
+                    return response()->json(['message'=>$room, 'status'=>201]);
                 }
 
             }
@@ -177,7 +177,7 @@ class RoomController extends Controller
             ];
 
             $validation = [
-                'name'   => 'min:1|unique:rooms,name',
+                // 'name'   => 'min:1|unique:rooms,name',
                 'status' => 'boolean',
                 'type'   => 'min:1',
                 'price'  => 'numeric',
@@ -188,7 +188,7 @@ class RoomController extends Controller
 
             //return message by json if validation false
             if($validator->fails()){
-                $response = array('message' => $validator->messages());
+                $response = ['message' => $validator->messages(),"status"=>false];
                 return $response;
             }else{
                 //get value room and update into database
@@ -197,7 +197,7 @@ class RoomController extends Controller
                     return response()->json(['message' => 'This room doesn\'t exists'], 404);
                 }else{
                     $room->fill($request->all())->save();
-                    return response()->json($room, 201);
+                    return response()->json(['message'=>$room, 'status'=>true], 201);
                 }
             }
         }catch(\Exception $e){

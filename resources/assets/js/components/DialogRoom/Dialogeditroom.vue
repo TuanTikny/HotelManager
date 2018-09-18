@@ -11,7 +11,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm12 md12>
-                <v-text-field color="blue lighten-1" label="Tên Phòng" :hint="texthint" v-model="roominfor.name" required></v-text-field>
+                <v-text-field disabled="" color="blue lighten-1" label="Tên Phòng" :hint="texthint" v-model="roominfor.name" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md6>
                 <v-combobox v-model="roominfor.type" :items="items" chips label="Loại phòng">
@@ -108,7 +108,7 @@ export default {
           note: this.roominfor.note
         })
         .then(res => {
-          if (!res.data.success) {
+          if (!res.data.status) {
             this.$store.commit("SNACKBAR", {
               status: true,
               content: "Cập Nhật Phòng Thất Bại",

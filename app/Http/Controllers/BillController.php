@@ -79,7 +79,7 @@ class BillController extends Controller
 
             //return message by json if validation false
             if($validator->fails()){
-                $response = array('message' => $validator->messages());
+                $response = ['message' => $validator->messages(),'status'=>"Thành Công"];
                 return $response;
             }else{
                 if(empty(Bill::where('order_id', $request->order_id)->first())){

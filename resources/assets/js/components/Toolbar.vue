@@ -1,11 +1,11 @@
 <template>
   <div>
-    <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="blue lighten-1" dark app fixed>
-      <v-toolbar-title style="margin-left:-20px">
-        <v-toolbar-side-icon @click.stop="drawer = !drawer">
+    <v-toolbar :clipped-left="$vuetify.breakpoint.lgAndUp" color="blue lighten-1" app fixed>
+      <v-toolbar-title style="margin-left:-20px;">
+        <v-toolbar-side-icon style="margin-top:1px" class="white--text" @click.stop="drawer = !drawer">
         </v-toolbar-side-icon>
 
-        <span class="hidden-sm-and-down">
+        <span class="white--text hidden-sm-and-down">
           {{$store.state.user.isadmin ? "Quản lý : "+$store.state.user.name : "Nhân viên : "+$store.state.user.name}}
         </span>
       </v-toolbar-title>
@@ -27,7 +27,7 @@
       </v-btn> -->
 
       <div class="text-xs-center">
-        <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
+        <v-menu px-4 v-model="menu" :close-on-content-click="false" :nudge-width="300" offset-x>
 
           <v-btn icon slot="activator" dark>
             <v-icon>more_vert</v-icon>
@@ -37,19 +37,14 @@
             <v-list>
               <v-list-tile avatar>
                 <v-list-tile-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                  <img src="images/personx96.png" alt="John">
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
-                  <v-list-tile-title>John Leider</v-list-tile-title>
-                  <v-list-tile-sub-title>Founder of Vuetify.js</v-list-tile-sub-title>
+                  <v-list-tile-title> {{$store.state.user.isadmin ? "Quản lý": "Nhân viên"}}</v-list-tile-title>
+                  <v-list-tile-sub-title>{{$store.state.user.name}} </v-list-tile-sub-title>
                 </v-list-tile-content>
 
-                <v-list-tile-action>
-                  <v-btn :class="fav ? 'red--text' : ''" icon @click="fav = !fav">
-                    <v-icon>favorite</v-icon>
-                  </v-btn>
-                </v-list-tile-action>
               </v-list-tile>
             </v-list>
 
@@ -60,22 +55,22 @@
                 <v-list-tile-action>
                   <v-switch v-model="message" color="purple"></v-switch>
                 </v-list-tile-action>
-                <v-list-tile-title>Enable messages</v-list-tile-title>
+                <v-list-tile-title>Điều chỉnh 1</v-list-tile-title>
               </v-list-tile>
 
               <v-list-tile>
                 <v-list-tile-action>
                   <v-switch v-model="hints" color="purple"></v-switch>
                 </v-list-tile-action>
-                <v-list-tile-title>Enable hints</v-list-tile-title>
+                <v-list-tile-title>Điều chỉnh 2</v-list-tile-title>
               </v-list-tile>
             </v-list>
 
             <v-card-actions>
               <v-spacer></v-spacer>
 
-              <v-btn flat @click="menu = false">Cancel</v-btn>
-              <v-btn color="primary" flat @click="menu = false">Save</v-btn>
+              <!-- <v-btn flat @click="menu = false">Cancel</v-btn> -->
+              <v-btn color="primary" flat @click="dialog = true">Đăng Xuất</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>

@@ -51,7 +51,7 @@ export default new Vuex.Store({
         .post("/details", { email: localStorage.getItem("EMAIL") })
         .then(res => {
           // console.log(res.data);
-          commit("USER", res.data.success);
+          commit("USER", res.data.status);
         });
     },
     signOut() {

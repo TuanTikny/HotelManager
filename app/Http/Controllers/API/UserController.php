@@ -43,12 +43,12 @@ class UserController extends Controller
         $user = User::create($input); 
         // $success['token'] = $user->createToken('MyApp')->accessToken; 
         $success['name'] = $user->name;
-        return response()->json(['success'=>$success], $this->successStatus); 
+        return response()->json(['status'=>$success], $this->successStatus); 
     }
 
     public function details() 
     { 
         $user = Auth::user(); 
-        return response()->json(['success' => $user], $this-> successStatus); 
+        return response()->json(['status' => $user], $this-> successStatus); 
     }
 }
